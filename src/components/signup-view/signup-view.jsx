@@ -3,6 +3,8 @@ import { Container, Card, Button, Form, CardGroup } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import "./signup-view.css";
+
 export const SignupView = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -38,15 +40,19 @@ export const SignupView = () => {
         <Container>
             <Row>
                 <Col></Col>
-                <Col xs={8} md={4}>
-                    <CardGroup>
-                        <Card>
+                <Col xs={8} md={12}>
+                    <CardGroup className="signupText">
+                        <Card className="my-4">
                             <Card.Body>
                                 <Card.Title>Please Register</Card.Title>
                                 <Form onSubmit={handleSubmit}>
-                                    <Form.Group controlId="formUsername">
+                                    <Form.Group
+                                        className="mt-3"
+                                        controlId="formUsername"
+                                    >
                                         <Form.Label>Username:</Form.Label>
                                         <Form.Control
+                                            className="formControl"
                                             type="text"
                                             value={username}
                                             onChange={(e) =>
@@ -58,9 +64,13 @@ export const SignupView = () => {
                                         />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formPassword">
+                                    <Form.Group
+                                        controlId="formPassword"
+                                        className="mt-3"
+                                    >
                                         <Form.Label>Password:</Form.Label>
                                         <Form.Control
+                                            className="formControl"
                                             type="password"
                                             value={password}
                                             onChange={(e) =>
@@ -68,13 +78,17 @@ export const SignupView = () => {
                                             }
                                             required
                                             placeholder="Enter your password"
-                                            minLength="8"
+                                            minLength="6"
                                         />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formEmail">
+                                    <Form.Group
+                                        controlId="formEmail"
+                                        className="mt-3"
+                                    >
                                         <Form.Label>Email:</Form.Label>
                                         <Form.Control
+                                            className="formControl"
                                             type="email"
                                             value={email}
                                             onChange={(e) =>
@@ -86,19 +100,26 @@ export const SignupView = () => {
                                         />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formBirthday">
+                                    <Form.Group
+                                        controlId="formBirthday"
+                                        className="mt-3"
+                                    >
                                         <Form.Label>Birthday:</Form.Label>
                                         <Form.Control
+                                            className="formControl"
                                             type="date"
                                             value={birthday}
                                             onChange={(e) =>
                                                 setBirthday(e.target.value)
                                             }
-                                            required
                                             placeholder="Enter your date of birth"
                                         />
                                     </Form.Group>
-                                    <Button variant="primary" type="submit">
+                                    <Button
+                                        variant="primary"
+                                        type="submit"
+                                        className="mt-3"
+                                    >
                                         Submit
                                     </Button>
                                 </Form>

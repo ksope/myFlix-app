@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300&family=Cabin+Sketch&family=Lato&family=Roboto&family=Uncial+Antiqua&family=Zilla+Slab+Highlight:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300&family=Baloo+Paaji+2:wght@500&family=Cabin+Sketch&family=Lato&family=Roboto&family=Uncial+Antiqua&family=Walter+Turncoat&family=Zilla+Slab+Highlight:wght@400;700&display=swap");
+
+.logoText {
+    font-family: "Zilla Slab Highlight", Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+}
+
+.navLinkText {
+    font-family: "Walter Turncoat", Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+}
