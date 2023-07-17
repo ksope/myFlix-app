@@ -17,6 +17,7 @@ View the app by clicking on the link below;
 https://ksope-myflix-movie-app.netlify.app
 
 Clone repository using command git clone https://github.com/ksope/myFlix-app.git
+This repo was created after issues with build on previous repo. However, previous commit history outlining project can be found here: https://github.com/ksope/myFlix-client/activity
 
 Install dependencies using commands npm install bootstrap@5.3.0 prop-types@15.8.1 react@18.2.0 react-bootstrap@2.8.0 react-dom@18.2.0 react-router@6.14.0 react-router-dom@6.14.0  and npm install --save-dev @parcel/transformer-sass@2.9.3 parcel@2.8.3 process@0.11.10
 
