@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import { Row, Col} from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import "./login-view.css";
 import { Container } from "react-bootstrap";
@@ -16,8 +16,8 @@ export const LoginView = ({ onLoggedIn }) => {
         e.preventDefault();
 
         const data = {
-            access: username,
-            secret: password,
+            Username: username,
+            Password: password,
         };
 
         fetch("https://myflixapp-220423.herokuapp.com/login", {

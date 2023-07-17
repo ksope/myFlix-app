@@ -10,6 +10,9 @@ export const MovieView = ({ movies, user, token }) => {
     const { movieId } = useParams();
 
     const movie = movies.find((m) => m._id === movieId);
+    if (!movie) {
+        return <div>Loading...</div>;
+    }
 
     //use the navigate library to navigate to previous route
     const navigate = useNavigate();
@@ -21,30 +24,65 @@ export const MovieView = ({ movies, user, token }) => {
         }
     };
 
-    const addMovieToFavorite = (movie) => {
-        if (!user.FavouriteMovies.includes(movie._id)) {
-            fetch(
-                `https://myflixapp-220423.herokuapp.com/user/${user.Username}/movies/${movie._id}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    body: JSON.stringify(movie),
-                }
-            )
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                })
-                .catch((e) => {
-                    alert("oops, seems something went wrong");
-                    console.log(e);
-                });
+    const addMovieToFavorite = (user) => {
+        if (user.FavouriteMovies && movie._id) {
+            if (!user.FavouriteMovies.includes(movie._id)) {
+                fetch(
+                    `https://myflixapp-220423.herokuapp.com/user/${user.Username}/movies/${movieId}`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify(movie),
+                    }
+                )
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                        console.log("done");
+                    })
+                    .catch((e) => {
+                        alert("oops, seems something went wrong");
+                        console.log(e);
+                    });
+            } else {
+                console.log("movie already on Favorite list");
+ 
+            }
+        }
+    };
+
+    const getSimilarMovies = (movies) => {
+        // Display similar movies in an array
+        let similarMovies = movies.filter(function (similarMovie) {
+            return (
+                similarMovie.Genre.Name === movie.Genre.Name &&
+                similarMovie.Title !== movie.Title
+            );
+        });
+        let displayMovies;
+
+        if (similarMovies.length === 0) {
+            displayMovies = (
+                <Col className="mt-4">No similar movies in database.</Col>
+            );
         } else {
-            console.log("movie already on Favorite list");
-            alert(`${movie.Title} already on the list of favorite movies`);
+            displayMovies = similarMovies.map(function (movie) {
+                return (
+                    <Col
+                        className="mt-4"
+                        key={movie._id}
+                        xs={6}
+                        md={4}
+                        lg={3}
+                        xl={2}
+                    >
+                        <MovieCard movie={movie}></MovieCard>
+                    </Col>
+                );
+            });
         }
     };
 
@@ -77,7 +115,10 @@ export const MovieView = ({ movies, user, token }) => {
                 Go Back
             </Button>
             <Button onClick={addMovieToFavorite} variant="secondary">
-                Add to your List of Favorites
+                Add to Favorites
+            </Button>
+            <Button onClick={getSimilarMovies} variant="secondary">
+                Similar Movies
             </Button>
             <Link to={"/"}>
                 <Button className="back-button">Return to Home</Button>
@@ -89,7 +130,7 @@ export const MovieView = ({ movies, user, token }) => {
 // Here is where we define all the props constraints for the MovieView
 MovieView.propTypes = {
     movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
+        Title: PropTypes.string,
         ImagePath: PropTypes.string,
         Description: PropTypes.string,
         Director: PropTypes.shape({
@@ -106,5 +147,5 @@ MovieView.propTypes = {
             Description: PropTypes.string,
         }),
     }).isRequired,
-    onBackClick: PropTypes.func.isRequired,
+    onBackClick: PropTypes.func
 };

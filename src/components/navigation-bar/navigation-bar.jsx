@@ -1,10 +1,15 @@
-import { Navbar, Container, Nav, Row, Col } from "react-bootstrap";
+import { Navbar, Container, Nav, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import SearchMovie from "../search-movie/search-movie";
 
-import './navigation-bar.css'
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+import "./navigation-bar.css";
+
+export const NavigationBar = ({ user, handleSearch, onLoggedOut }) => {
+
+    let searchData;
+
+   
+
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -45,10 +50,19 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                                 </Nav.Link>
                             </>
                         )}
+                        <Form inline="true">
+                            <Form.Control
+                                onChange={
+                                    (e) => {searchData = e.target.value
+                                    {()=>handleSearch(searchData)}}
+                                    }
+                                type="text"
+                                placeholder="Search for a movie"
+                                className="mr-sm-2"
+                            />
+                        </Form>
                     </Nav>
                 </Navbar.Collapse>
-
-                <SearchMovie />
             </Container>
         </Navbar>
     );

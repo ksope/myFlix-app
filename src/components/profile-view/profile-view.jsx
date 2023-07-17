@@ -7,34 +7,19 @@ import FavoriteMovies from "./favorite-movies";
 import UpdateUser from "./update-user";
 import DeleteUser from "./delete-user";
 
-export default function ProfileView({
-    movies,
-    profileuser,
-    setProfileuser,
-    profiletoken,
-    setProfiletoken,
-    onLoggedOut,
-}) {
+export default function ProfileView({ movies, movieUser, movieToken, onLoggedOut }) {
+
+
     return (
         <div>
-            <UserInfo name={profileuser.Username} email={profileuser.Email} />
+            <UserInfo name={movieUser.Username} email={movieUser.Email} />
             <FavoriteMovies
-                movieList={movies}
-                favuser={profileuser}
-                favtoken={profiletoken}
+                user={movieUser}
+                token={movieToken}
+                movies={movies}
             />
-            <UpdateUser
-                updateuser={profileuser}
-                setUpdateuser={setProfileuser}
-                updatetoken={profiletoken}
-                setUpdatetoken={setProfiletoken}
-            />
-            <DeleteUser
-                deleteuser={profileuser}
-                setDeleteuser={setProfileuser}
-                deletedtoken={profiletoken}
-                setDeletedtoken={setProfiletoken}
-            />
+            <UpdateUser updateTheUser={movieUser} updateTheToken={movieToken} />
+            <DeleteUser deleteuser={movieUser} deleteTheToken={movieToken} />
             <Button
                 className="btn-secondary"
                 as={Link}

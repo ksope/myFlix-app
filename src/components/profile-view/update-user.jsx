@@ -2,13 +2,14 @@
 import { Container, Button, Form, Card, CardGroup } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { useState, useEffect } from "react";
 
-export default function UpdateUser({
-    updateuser,
-    setUpdateuser,
-    updatetoken,
-    setUpdatetoken,
-}) {
+export default function UpdateUser({ updateTheUser, updateTheToken }) {
+    const [updateuser, setUpdateuser] = useState({ ...updateTheUser });
+    const [updatetoken, setUpdatetoken] = useState({ ...updateTheToken });
+
+    useEffect(() => {setUpdateuser(updateuser);}, [updateuser]);
+
     const handleSubmit = (e) => {
         //this prevents default behaviour of the form which is to reload the page
         e.preventDefault();

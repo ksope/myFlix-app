@@ -17,6 +17,25 @@ export const MainView = () => {
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
+    const [query, setQuery] = useState("");
+
+    let returnedMovies;
+
+
+        const handleSearch = (query) => {
+            console.log('hello')
+            setQuery(query);
+
+            returnedMovies =
+                movies &&
+                movies.filter((m) => {
+                    m.Title.toLowerCase().includes(query.toLowerCase());
+                });
+        };
+
+
+
+
 
     useEffect(() => {
         if (!token) {
@@ -36,6 +55,7 @@ export const MainView = () => {
         <BrowserRouter>
             <NavigationBar
                 user={user}
+                handleSearch={handleSearch}
                 onLoggedOut={(user) => {
                     setUser(null);
                     setToken(null);
@@ -91,6 +111,7 @@ export const MainView = () => {
                                             <MovieView
                                                 movies={movies}
                                                 user={user}
+                                                token={token}
                                             />
                                         </Col>
                                     )}
@@ -103,8 +124,29 @@ export const MainView = () => {
                                 <>
                                     {!user ? (
                                         <Navigate to="/login" replace />
-                                    ) : movies.length === 0 ? (
+                                    ) : movies.length == 0 ? (
                                         <Col>The list is empty!</Col>
+                                    ) : query ? (
+                                        <>
+                                            {returnedMovies.map(function (
+                                                mov
+                                            ) {
+                                                return (
+                                                    <Col
+                                                        className="mb-4"
+                                                        key={mov._id}
+                                                        xs={6}
+                                                        md={4}
+                                                        lg={3}
+                                                        xl={2}
+                                                    >
+                                                        <MovieCard
+                                                            movie={mov}
+                                                        />
+                                                    </Col>
+                                                );
+                                            })}
+                                        </>
                                     ) : (
                                         <>
                                             {movies.map((movie) => (
@@ -131,13 +173,13 @@ export const MainView = () => {
                                         <Col>
                                             <ProfileView
                                                 movies={movies}
+                                                movieUser={user}
+                                                movieToken={token}
                                                 onLoggedOut={(user) => {
                                                     setUser(null);
                                                     setToken(null);
                                                     localStorage.clear();
                                                 }}
-                                                token={token}
-                                                user={user}
                                             />
                                         </Col>
                                     )}

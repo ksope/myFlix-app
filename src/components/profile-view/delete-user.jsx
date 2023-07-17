@@ -1,13 +1,16 @@
 //delete a user's account and details from the system
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { useState } from "react";
 
 export default function DeleteUser({
-    deleteuser,
-    setDeleteuser,
-    deletedtoken,
-    setDeletedtoken,
+    deleteTheUser,
+    deleteTheToken
 }) {
+
+        const [deleteuser, setDeleteuser] = useState({ ...deleteTheUser });
+        const [deletedtoken, setDeletedtoken] = useState({...deleteTheToken});
+
     const deleteAccount = () => {
         fetch(
             `https://myflixapp-220423.herokuapp.com/user/${deleteuser.Username}`,

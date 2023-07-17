@@ -13240,7 +13240,9 @@ textarea.form-control-lg {
   box-shadow: 0 0 0 .2rem #007bff40;
 }
 
-
+Button {
+  margin: 1rem;
+}
 
 .logoText {
   font-family: Zilla Slab Highlight, Arial, Helvetica, sans-serif;
