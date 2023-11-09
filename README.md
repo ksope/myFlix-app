@@ -1,4 +1,5 @@
 # myFlix-app
+
 Project title: myFlix-app
 
 Project Description:
@@ -19,13 +20,14 @@ https://ksope-myflix-movie-app.netlify.app
 Clone repository using command git clone https://github.com/ksope/myFlix-app.git
 This repo was created after issues with build on previous repo. However, previous commit history outlining project can be found here: https://github.com/ksope/myFlix-client/activity
 
-Install dependencies using commands npm install bootstrap@5.3.0 prop-types@15.8.1 react@18.2.0 react-bootstrap@2.8.0 react-dom@18.2.0 react-router@6.14.0 react-router-dom@6.14.0  and npm install --save-dev @parcel/transformer-sass@2.9.3 parcel@2.8.3 process@0.11.10
+Install dependencies using commands npm install bootstrap@5.3.0 prop-types@15.8.1 react@18.2.0 react-bootstrap@2.8.0 react-dom@18.2.0 react-router@6.14.0 react-router-dom@6.14.0 and npm install --save-dev @parcel/transformer-sass@2.9.3 parcel@2.8.3 process@0.11.10
 
 Run the app using the command: parcel src/index.html. App should load in the browser at http://localhost:1234.
 
-To access movies, register or use following test credentials: Username: adamSmith; Password: adamSmith
+To access movies, register or use following test credentials: Username: adamSmith01; Password: adamSmith01
 
 How To view details of a movie:
+
 1. click on a movie card to go the movie view.
 2. Click the 'Back' button in the displayed MovieView to navigate back to MainView’s original state.
 
