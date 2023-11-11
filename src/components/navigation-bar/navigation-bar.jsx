@@ -1,14 +1,20 @@
 import { Navbar, Container, Nav, Row, Col, Form } from "react-bootstrap";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-
 
 import "./navigation-bar.css";
 
-export const NavigationBar = ({ user, handleSearch, onLoggedOut }) => {
+export const NavigationBar = ({ user, onSearch, movies, onLoggedOut }) => {
+    const [query, setQuery] = useState("");
 
-    let searchData;
+    //filter list of movies based on search text
+    const filterMovies = movies.filter((m) =>
+        m.Title.toLowerCase().startsWith(query.toLowerCase())
+    );
 
-   
+    /* const filterMovies = 
+        query ? movies.filter((m) =>
+        m.Title.toLowerCase().startsWith(query.toLowerCase())) : movies */
 
     return (
         <Navbar bg="light" expand="lg">
@@ -52,10 +58,12 @@ export const NavigationBar = ({ user, handleSearch, onLoggedOut }) => {
                         )}
                         <Form inline="true">
                             <Form.Control
-                                onChange={
-                                    (e) => {searchData = e.target.value
-                                    {()=>handleSearch(searchData)}}
-                                    }
+                                value={query}
+                                onChange={(e) => {
+                                    setQuery(e.target.value);
+                                    console.log(filterMovies);
+                                    onSearch(filterMovies);
+                                }}
                                 type="text"
                                 placeholder="Search for a movie"
                                 className="mr-sm-2"
