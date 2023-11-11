@@ -146,6 +146,6 @@ MovieView.propTypes = {
             Name: PropTypes.string,
             Description: PropTypes.string,
         }),
-    }).isRequired,
+    }),
     onBackClick: PropTypes.func
 };
