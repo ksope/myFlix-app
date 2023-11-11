@@ -17,23 +17,12 @@ export const MainView = () => {
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
-    const [query, setQuery] = useState("");
+    
 
     let returnedMovies;
-
-
-        const handleSearch = (query) => {
-            console.log('hello')
-            setQuery(query);
-
-            returnedMovies =
-                movies &&
-                movies.filter((m) => {
-                    m.Title.toLowerCase().includes(query.toLowerCase());
-                });
-        };
-
-
+    const handleSearch = (movies) =>{
+        setMovies(movies)
+    }
 
 
 
@@ -55,7 +44,8 @@ export const MainView = () => {
         <BrowserRouter>
             <NavigationBar
                 user={user}
-                handleSearch={handleSearch}
+                onSearch = {handleSearch}
+                movies = {movies}
                 onLoggedOut={(user) => {
                     setUser(null);
                     setToken(null);
@@ -126,28 +116,7 @@ export const MainView = () => {
                                         <Navigate to="/login" replace />
                                     ) : movies.length == 0 ? (
                                         <Col>The list is empty!</Col>
-                                    ) : query ? (
-                                        <>
-                                            {returnedMovies.map(function (
-                                                mov
-                                            ) {
-                                                return (
-                                                    <Col
-                                                        className="mb-4"
-                                                        key={mov._id}
-                                                        xs={6}
-                                                        md={4}
-                                                        lg={3}
-                                                        xl={2}
-                                                    >
-                                                        <MovieCard
-                                                            movie={mov}
-                                                        />
-                                                    </Col>
-                                                );
-                                            })}
-                                        </>
-                                    ) : (
+                                    ) :  (
                                         <>
                                             {movies.map((movie) => (
                                                 <Col
