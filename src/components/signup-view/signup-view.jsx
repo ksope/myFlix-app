@@ -60,7 +60,7 @@ export const SignupView = () => {
                                             }
                                             required
                                             placeholder="Enter your username"
-                                            minLength="3"
+                                            minLength="5"
                                         />
                                     </Form.Group>
 
