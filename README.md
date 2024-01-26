@@ -24,7 +24,7 @@ Install dependencies using commands npm install bootstrap@5.3.0 prop-types@15.8.
 
 Run the app using the command: parcel src/index.html. App should load in the browser at http://localhost:1234.
 
-To access movies, register or use following test credentials: Username: adamSmith01; Password: adamSmith01
+To access movies, register or use following test credentials: Username: adamsmith01; Password: adamsmith01
 
 How To view details of a movie:
 
